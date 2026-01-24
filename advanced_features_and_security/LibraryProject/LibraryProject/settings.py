@@ -125,10 +125,20 @@ DEBUG = False
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = 'DENY'
 SECURE_CONTENT_TYPE_NOSNIFF = True
+# Important for proxy setups (like Heroku or Nginx)
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Cookie Security (requires HTTPS, which we set up in Task 3)
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
+
+# Force all connections over HTTPS
+SECURE_SSL_REDIRECT = True
+
+# HSTS settings
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
 
 # Basic CSP: Allow scripts/styles from 'self' (your own domain)
 CSP_DEFAULT_SRC = ("'self'",)
