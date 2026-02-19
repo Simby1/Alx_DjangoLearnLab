@@ -1,9 +1,15 @@
 {% extends 'blog/base.html' %} {% block content %}
 <h2>User Profile</h2>
 <div>
-  <p><strong>Username:</strong> {{ user.username }}</p>
-  <p><strong>Email:</strong> {{ user.email }}</p>
+  <p><strong>Current Username:</strong> {{ user.username }}</p>
+  <p><strong>Current Email:</strong> {{ user.email }}</p>
 </div>
+
 <hr />
-<p><a href="#">Edit Profile Info</a> (Coming Soon)</p>
+
+<h3>Update Profile Info</h3>
+<form method="POST">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit">Update Info</button>
+</form>
 {% endblock %}
